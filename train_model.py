@@ -54,19 +54,45 @@ X_len = scaler.fit_transform(X_len)
 X = np.hstack((X_text, X_len))
 y_class = df['problem_class']
 y_score = df['problem_score']
+# ... (Keep your imports and data preprocessing SAME as before) ...
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, mean_absolute_error, mean_squared_error
+
+# Split data: 80% for training, 20% for testing/calculating accuracy
+X_train, X_test, y_class_train, y_class_test, y_score_train, y_score_test = train_test_split(
+    X, y_class, y_score, test_size=0.2, random_state=42
+)
 
 # ==========================================
 #  REQUIREMENT 3: CLASSIFICATION MODEL
 # ==========================================
-print("3. Training Classification Model (Easy/Medium/Hard)...")
+print("3. Training Classification Model...")
 clf = RandomForestClassifier(n_estimators=100, random_state=42)
-clf.fit(X, y_class)
+clf.fit(X_train, y_class_train) # Train on 80%
+
+# Calculate Accuracy
+y_class_pred = clf.predict(X_test) # Test on 20%
+acc = accuracy_score(y_class_test, y_class_pred)
+print(f"✅ Classification Accuracy: {acc:.2f}") # This prints the accuracy (e.g., 0.67)
 
 # ==========================================
 #  REQUIREMENT 4: REGRESSION MODEL
 # ==========================================
-print("4. Training Regression Model (Difficulty Score)...")
+print("4. Training Regression Model...")
 reg = RandomForestRegressor(n_estimators=100, random_state=42)
+reg.fit(X_train, y_score_train)
+
+# Calculate MAE and RMSE
+y_score_pred = reg.predict(X_test)
+mae = mean_absolute_error(y_score_test, y_score_pred)
+rmse = np.sqrt(mean_squared_error(y_score_test, y_score_pred))
+
+print(f"✅ Regression MAE: {mae:.2f}")   # Prints Mean Absolute Error
+print(f"✅ Regression RMSE: {rmse:.2f}") # Prints Root Mean Squared Error
+
+# Retrain on FULL data before saving (for best performance in the app)
+print("Retraining on full dataset for final artifacts...")
+clf.fit(X, y_class)
 reg.fit(X, y_score)
 
 # Save everything
