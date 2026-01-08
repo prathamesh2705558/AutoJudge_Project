@@ -70,7 +70,7 @@ The User Interface is built using **Streamlit** for a clean, responsive experien
     * **Predicted Rating:** Shows the specific numeric rating with a visual progress bar.
 
 ## 7. Demo Video
-Watch the working demo of the project here: [LINK TO YOUR VIDEO]
+Watch the working demo of the project here: https://youtu.be/v_9dLJEyRNU
 
 ## 8. Author Details
 * **Name:** Prathamesh Amrutkar
