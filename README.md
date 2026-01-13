@@ -44,7 +44,7 @@ Follow these steps to run the project on your own machine:
 1.  **Prerequisites:** Python 3.8+ installed.
 2.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/prathamesh2705558/AutoJudge_Project.git](https://github.com/prathamesh2705558/AutoJudge_Project.git)
+    git clone https://github.com/prathamesh2705558/AutoJudge_Project
     cd AutoJudge_Project
     ```
 3.  **Install Dependencies:**
@@ -58,7 +58,7 @@ Follow these steps to run the project on your own machine:
     ```
 5.  **Run the Web App:**
     ```bash
-    streamlit run app.py
+    python -m streamlit run app.py
     ```
 
 ## 6. Explanation of Web Interface
